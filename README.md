@@ -63,7 +63,7 @@ Two bodies in 2D interacting through Newtonian gravity ($F = G \frac{m_1 m_2}{d^
 
 Visualizing the two-body collision dynamically using `matplotlib` and `FuncAnimation`.
 
-![Two-Body Collision Animation](outputs/nbody_simulation.gif)
+![Two-Body Collision Animation](outputs/2body_simulation.gif)
 
 **Features:**
 - **Static trajectory plot:** records positions over time and plots trajectories with 1:1 spatial aspect ratio (`outputs/trajectories.png`).

@@ -91,5 +91,5 @@ def update(frame):
     return p1, p2, trail1, trail2
 
 animation = FuncAnimation(fig, update, frames=range(0,len(listx1),6), interval=20, blit=True)
-animation.save('outputs/nbody_simulation.gif', writer='pillow', fps=30)
+animation.save('outputs/2body_simulation.gif', writer='pillow', fps=30)
 plt.show()
