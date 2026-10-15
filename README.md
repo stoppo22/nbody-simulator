@@ -59,10 +59,23 @@ Two bodies in 2D interacting through Newtonian gravity ($F = G \frac{m_1 m_2}{d^
 - **Center of mass:** The center of mass remains stationary throughout the simulation.
 - **Overshooting near collision:** Because gravitational acceleration scales as $1/d^2$, the force diverges as $d \to 0$. With a fixed time step ($dt = 0.01$), the acceleration at the final step becomes large enough that the two bodies cross each other (overshoot) in a single step.
 
+## Stage 3: visualization
+
+Visualizing the two-body collision dynamically using `matplotlib` and `FuncAnimation`.
+
+![Two-Body Collision Animation](outputs/nbody_simulation.gif)
+
+**Features:**
+- **Static trajectory plot:** records positions over time and plots trajectories with 1:1 spatial aspect ratio (`outputs/trajectories.png`).
+- **Dynamic animation:** displays the motion in real time with expanding transparent trails (`alpha=0.5`).
+- **Mass scaling:** body marker sizes are proportional to their masses ($m_1 = 1$, $m_2 = 3$).
+- **Normalized legend:** legend markers are standardized to a clean, fixed size so large bodies don't distort the UI.
+- **Fixed frame:** fixed coordinate bounds prevent camera panning/jitter during simulation.
+
 ## Roadmap
 
 - [x] Stage 1: single body, constant acceleration
 - [x] Stage 2: two bodies with Newtonian gravity (2D)
-- [ ] Stage 3: visualization
+- [x] Stage 3: visualization
 - [ ] Stage 4: Earth-Sun orbit, energy drift, Euler vs Verlet/leapfrog
 - [ ] Stage 5: N bodies
