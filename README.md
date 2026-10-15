@@ -26,10 +26,43 @@ Exact values from the analytical solution: max height v0²/(2g) ≈ 5.0968 m, fl
 
 
 
+## Stage 2: two bodies with Newtonian gravity (2D)
+
+Two bodies in 2D interacting through Newtonian gravity ($F = G \frac{m_1 m_2}{d^2}$), starting from rest and falling toward each other.
+
+**Initial conditions:** 
+- $G = 1$
+- Body 1: $m_1 = 1$, position $(0, 0)$, $v_1 = (0, 0)$
+- Body 2: $m_2 = 3$, position $(3, 4)$, $v_2 = (0, 0)$
+- Initial separation: $d_0 = 5$
+
+**Method:** Semi-implicit Euler in 2D. At each time step ($dt = 0.01$):
+1. Compute relative displacement $\Delta x, \Delta y$ and distance $d$.
+2. Compute acceleration magnitudes ($a_1 = G \frac{m_2}{d^2}$, $a_2 = G \frac{m_1}{d^2}$) and decompose into Cartesian components along the unit vector.
+3. Update velocities first, then update positions.
+4. Stop when distance $d \le 0.1$ to avoid the numerical singularity at $d = 0$.
+
+### Results
+
+- **Free-fall time:**
+  - Analytical solution: $t_{\text{fall}} = \frac{\pi}{2\sqrt{2}} \frac{d_0^{3/2}}{\sqrt{G(m_1 + m_2)}} \approx 6.209\text{ s}$
+  - Simulated time: $6.21\text{ s}$
+- **Collision position:**
+  - Center of mass: $R_{\text{cm}} = \frac{m_1 r_1 + m_2 r_2}{m_1 + m_2} = (2.25, 3.00)$
+  - Final positions: $(2.287, 3.050)$ and $(2.238, 2.983)$
+- **Velocity ratio:**
+  - $v_1 \approx (7.03, 9.37)$, $v_2 \approx (-2.34, -3.12)$
+  - $\frac{|v_1|}{|v_2|} = 3.0$, perfectly conserving total linear momentum ($m_1 v_1 + m_2 v_2 = 0$).
+
+### Observations
+
+- **Center of mass:** The center of mass remains stationary throughout the simulation.
+- **Overshooting near collision:** Because gravitational acceleration scales as $1/d^2$, the force diverges as $d \to 0$. With a fixed time step ($dt = 0.01$), the acceleration at the final step becomes large enough that the two bodies cross each other (overshoot) in a single step.
+
 ## Roadmap
 
 - [x] Stage 1: single body, constant acceleration
-- [ ] Stage 2: two bodies with Newtonian gravity (2D)
+- [x] Stage 2: two bodies with Newtonian gravity (2D)
 - [ ] Stage 3: visualization
 - [ ] Stage 4: Earth-Sun orbit, energy drift, Euler vs Verlet/leapfrog
 - [ ] Stage 5: N bodies
